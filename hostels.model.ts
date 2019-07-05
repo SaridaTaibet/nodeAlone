@@ -5,3 +5,9 @@ export interface HostelsModel {
     roomNumber: number,
     adress : string,
 }
+
+export interface RoomsModel {
+    name : string,
+    uid : string,
+    size: number,
+}

@@ -29,22 +29,50 @@ app.get('/hostels', (req, res) => __awaiter(this, void 0, void 0, function* () {
     hostelsref.forEach((value) => hostels.push(value.data()));
     res.send(hostels);
 }));
+app.get('/rooms', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    const ref = db.colletion('rooms');
+    const rooms = [];
+    const roomsref = yield ref.get();
+    roomsref.forEach((value) => rooms.push(value.data()));
+    res.send(rooms);
+}));
 app.post('/add/hostels', (req, res) => __awaiter(this, void 0, void 0, function* () {
     const ref = db.collection('hostels');
     const hostel = req.body;
     yield ref.add(hostel);
     res.send(hostel);
 }));
-app.delete('/delete/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const ref = db.collection('hostels').doc(req.params.id);
-    yield ref.delete();
-    res.send();
+app.post('/add/room', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    const ref = db.collection('rooms');
+    const room = req.body;
+    yield ref.add(room);
+    res.send(room);
 }));
-app.put('/update/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+/*app.delete('/delete/:id', async (req, res) => {
     const ref = db.collection('hostels').doc(req.params.id);
-    yield ref.set(req.body);
-    res.send();
-}));
+    await ref.delete();
+    res.send()
+});*/
+/*app.delete('/delete/:id', async (req, res)=> {
+   const ref = db.collection('hostels').doc(req.params.id);
+   await ref.delete();
+   res.send()
+});*/
+/*app.put('/update/:id', async (req, res) => {
+    const ref = db.collection('hostels').doc(req.params.id);
+    await ref.set(req.body);
+    res.send()
+});*/
+/*app.put('/update/:id', async (req, res)=> {
+   const ref = db.collection('hostels').doc(req.params.id);
+   await ref.set(req.body);
+   res.send()
+});*/
+/*app.patch('/update/:id', async (req, res) => {
+    const ref = db.collection('hostels').doc(req.params.id);
+    await ref.update(req.body);
+    res.send()
+});*/
 app.patch('/update/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
     const ref = db.collection('hostels').doc(req.params.id);
     yield ref.update(req.body);
