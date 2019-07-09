@@ -29,7 +29,7 @@ app.get('/hostels', (req, res) => __awaiter(this, void 0, void 0, function* () {
     hostelsref.forEach((value) => hostels.push(value.data()));
     res.send(hostels);
 }));
-app.get('/rooms', (req, res) => __awaiter(this, void 0, void 0, function* () {
+app.get('/hostels/room', (req, res) => __awaiter(this, void 0, void 0, function* () {
     const ref = db.colletion('rooms');
     const rooms = [];
     const roomsref = yield ref.get();
@@ -74,7 +74,7 @@ app.post('/add/room', (req, res) => __awaiter(this, void 0, void 0, function* ()
     res.send()
 });*/
 app.patch('/update/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
-    const ref = db.collection('hostels').doc(req.params.id);
+    const ref = db.collection('rooms').doc(req.params.id);
     yield ref.update(req.body);
     res.send();
 }));

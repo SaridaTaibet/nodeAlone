@@ -24,12 +24,13 @@ app.get('/hostels', async (req, res) => {
     res.send(hostels)
 });
 
-app.get('/rooms', async (req, res)=>{
+app.get('/hostels/room', async (req, res)=>{
    const ref = db.colletion('rooms');
-   const rooms: RoomsModel[] = [];
+   const rooms: RoomsModel [] = [];
    const roomsref = await ref.get();
    roomsref.forEach((value: {data: () => RoomsModel;})=> rooms.push(value.data () as RoomsModel));
    res.send(rooms);
+
 });
 
 app.post('/add/hostels', async (req, res) => {
@@ -77,7 +78,7 @@ app.post('/add/room', async (req, res) => {
     res.send()
 });*/
 app.patch('/update/:id', async (req, res) => {
-    const ref = db.collection('hostels').doc(req.params.id);
+    const ref = db.collection('rooms').doc(req.params.id);
     await ref.update(req.body);
     res.send()
 
